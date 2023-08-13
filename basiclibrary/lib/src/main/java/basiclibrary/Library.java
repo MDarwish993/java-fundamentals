@@ -3,8 +3,7 @@
  */
 package basiclibrary;
 
-import java.util.ArrayList;
-import java.util.Random;
+import java.util.*;
 
 public class Library {
 
@@ -63,4 +62,56 @@ public class Library {
         }
         return lowestAvgArr;
     }
+
+
+    //===========================lab03Solution======================
+    //Method#1 weatherData Lab03
+    public String weatherData(int[][] data) {
+        HashSet<Integer> uniqueTemperatures = new HashSet<>();
+        int minTemp = Integer.MAX_VALUE;
+        int maxTemp = Integer.MIN_VALUE;
+
+
+        for (int[] weekTemperatures : data) {
+            for (int temperature : weekTemperatures) {
+                uniqueTemperatures.add(temperature);
+                minTemp = Math.min(minTemp, temperature);
+                maxTemp = Math.max(maxTemp, temperature);
+            }
+        }
+
+        StringBuilder missingTemps = new StringBuilder();
+        for (int temp = minTemp; temp <= maxTemp; temp++) {
+            if (!uniqueTemperatures.contains(temp)) {
+                missingTemps.append("Never saw temperature: ").append(temp).append("\n");
+            }
+        }
+
+        return "High: " + maxTemp + "\nLow: " + minTemp + "\n" + missingTemps.toString();
+    }
+
+    //Method#2 weatherData Lab03
+    public String tally(List<String> votes) {
+        Map<String, Integer> voteCount = new HashMap<>();
+
+        // Count the votes
+        for (String vote : votes) {
+            voteCount.put(vote, voteCount.getOrDefault(vote, 0) + 1);
+        }
+
+        // Find the winner
+        String winner = "";
+        int maxVotes = 0;
+        for (Map.Entry<String, Integer> entry : voteCount.entrySet()) {
+            if (entry.getValue() > maxVotes) {
+                maxVotes = entry.getValue();
+                winner = entry.getKey();
+            }
+        }
+
+        return winner;
+    }
+
+
+
 }
