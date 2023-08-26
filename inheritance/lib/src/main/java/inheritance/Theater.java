@@ -3,15 +3,17 @@ package inheritance;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Restaurant implements AddReviewMethod{
+public class Theater {
+
     private String name;
-    private double price;
     private  int numberOfStars;
-    private List<Review> reviews;
-    public Restaurant(String name, double price, int numberOfStars) {
+    private List<String>movies;
+    private List<Review>reviews;
+
+    public Theater(String name,int numberOfStars) {
         setName(name);
-        setPrice(price);
         setNumberOfStars(numberOfStars);
+        this.movies=new ArrayList<>();
         this.reviews=new ArrayList<>();
     }
 
@@ -22,15 +24,6 @@ public class Restaurant implements AddReviewMethod{
     public void setName(String name) {
         this.name = name;
     }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
     public int getNumberOfStars() {
         return numberOfStars;
     }
@@ -41,8 +34,14 @@ public class Restaurant implements AddReviewMethod{
         }else {
             this.numberOfStars = 0;
         }
+    }
 
+    public void addMovie(String movie) {
+        movies.add(movie);
+    }
 
+    public void removeMovie (String movie) {
+        movies.remove(movie);
     }
 
     public void addReview(Review review) {
@@ -61,10 +60,10 @@ public class Restaurant implements AddReviewMethod{
 
     @Override
     public String toString() {
-        return "Restaurant{" +
-                "name='" + getName() + '\'' +
-                ", price=" + getPrice() +
-                ", numberOfStars=" + getNumberOfStars() +
+        return "Theater{" +
+                "name='" + name + '\'' +
+                ", numberOfStars=" + numberOfStars +
                 '}';
     }
 }
+

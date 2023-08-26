@@ -5,15 +5,42 @@ public class Review {
     private String author;
     private int numberOfStars;
     private Restaurant restaurant;
+    private Shop shop;
+    private Theater theater;
 
-    public Review(String body, String author, int numberOfStars,Restaurant restaurant) {
+    public Review(String body, String author, int numberOfStars, Object object ) {
         setBody(body);
         setAuthor(author);
         setNumberOfStars(numberOfStars);
-        this.restaurant=restaurant;
 
-        restaurant.addReview(this);
+        if(object.getClass()== Restaurant.class){
+            this.restaurant=(Restaurant) object;
+            restaurant.addReview(this);
+        } else if (object.getClass()== Shop.class) {
+            this.shop=(Shop) object;
+            shop.addReview(this);
+        } else if (object.getClass()== Theater.class) {
+            this.theater=(Theater) object;
+            theater.addReview(this);
+        }
 
+
+    }
+
+    public Theater getTheater() {
+        return theater;
+    }
+
+    public void setTheater(Theater theater) {
+        this.theater = theater;
+    }
+
+    public Shop getShop() {
+        return shop;
+    }
+
+    public void setShop(Shop shop) {
+        this.shop = shop;
     }
 
     public Restaurant getRestaurant() {
@@ -45,7 +72,11 @@ public class Review {
     }
 
     public void setNumberOfStars(int numberOfStars) {
-        this.numberOfStars = numberOfStars;
+        if (numberOfStars>=0 && numberOfStars<=5){
+            this.numberOfStars = numberOfStars;
+        }else {
+            this.numberOfStars = 0;
+        }
     }
 
     @Override
@@ -56,4 +87,6 @@ public class Review {
                 ", numberOfStars=" + getNumberOfStars() +
                 '}';
     }
+
+
 }

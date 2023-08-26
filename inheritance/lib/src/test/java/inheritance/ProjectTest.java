@@ -2,7 +2,7 @@ package inheritance;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
-public class RestaurantTest {
+public class ProjectTest {
 
 
     @Test public void testRestaurantToString() {
@@ -29,6 +29,21 @@ public class RestaurantTest {
         assertEquals(5, restaurant.getNumberOfStars(), "Restaurant stars should be updated after adding a review");
     }
 
+    @Test
+    public void testAddReviewAssociatesShopAndReview() {
+        Shop shop = new Shop("test","test description",15.5,4);
+        Review review = new Review("Amazing flavors!", "Eve", 5, shop);
+        assertEquals(shop, review.getShop(), "Review should be associated with the correct restaurant");
+        assertEquals(5, shop.getNumberOfStars(), "Restaurant stars should be updated after adding a review");
+    }
+
+    @Test
+    public void testAddReviewAssociatesTheaterAndReview() {
+        Theater theater = new Theater("test",4);
+        Review review = new Review("Amazing flavors!", "Eve", 5, theater);
+        assertEquals(theater, review.getTheater(), "Review should be associated with the correct restaurant");
+        assertEquals(5, theater.getNumberOfStars(), "Restaurant stars should be updated after adding a review");
+    }
 
 
 
