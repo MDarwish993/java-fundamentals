@@ -3,7 +3,7 @@ package inheritance;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Theater {
+public class Theater implements AddReviewMethod{
 
     private String name;
     private  int numberOfStars;

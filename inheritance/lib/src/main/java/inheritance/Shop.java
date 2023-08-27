@@ -3,7 +3,7 @@ package inheritance;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Shop {
+public class Shop implements AddReviewMethod{
     private String name;
     private String description;
     private  double price;
